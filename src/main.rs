@@ -1,13 +1,24 @@
+use std::fs;
+use std::io;
+
 fn main() {
-    let s1 = String::new();
-    let s2 = String::from("Hello");
+    let file_name = "out.txt";
 
-    print!("{}", s2);
+    /*match write_to_file(file_name, "Hello Rust") {
+        Ok(()) => println!("File written"),
+        Err(e) => println!("Errors {}", e),
+    }*/
 
-    let s3 = s1 + &s2;
+    match file_read(file_name) {
+        Ok(text) => println!("Text: {}", text),
+        Err(e) => println!("Error: {}", e),
+    }
+}
 
-    let mut word = String::new();
-    word.push_str("Hello");
-    word.push(" ");
-    word.push_str("World");
+fn file_read(file_patch: &str) -> Result<String, io::Error> {
+    fs::read_to_string(file_patch)
+}
+
+fn write_to_file(file_patch: &str, content: &str) -> Result<(), io::Error> {
+    fs::write(file_patch, content)
 }
