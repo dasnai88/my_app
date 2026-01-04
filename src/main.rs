@@ -18,6 +18,15 @@ fn read_i32() -> i32 {
 fn main() {
     let mut random = rand::rng();
     let rand: i32 = random.random_range(1..=100);
-    let x = read_i32();
-    print!("{}", x)
+    while true {
+        let x = read_i32();
+        if x > rand {
+            println!("you number it`s big ");
+        } else if x < rand {
+            println!("your number it`s small");
+        } else if x == rand {
+            println!("you win");
+            break;
+        }
+    }
 }
